@@ -1,0 +1,54 @@
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  position: sticky;
+  top: calc(var(--header-height) + var(--spacing-lg));
+}
+
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.totalLabel {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.totalValue {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary-700);
+}
+
+.checkoutButton {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-button-primary);
+  color: var(--color-button-primary-text);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkoutButton:hover:not(:disabled) {
+  background-color: var(--color-button-primary-hover);
+}
+
+.checkoutButton:disabled {
+  background-color: var(--color-button-disabled);
+  color: var(--color-button-disabled-text);
+  cursor: not-allowed;
+}

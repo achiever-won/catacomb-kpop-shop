@@ -1,0 +1,46 @@
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-xl);
+  background-color: var(--color-bg-page);
+}
+
+.errorContent {
+  text-align: center;
+  max-width: 480px;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.errorTitle {
+  font-size: 3rem;
+  margin: 0 0 1rem;
+}
+
+.errorMessage {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+.homeButton {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: var(--color-button-primary);
+  color: var(--color-button-primary-text);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.homeButton:hover {
+  background-color: var(--color-button-primary-hover);
+}

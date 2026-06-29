@@ -1,0 +1,133 @@
+{
+  "header": {
+    "search": "Search",
+    "cart": "Cart",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "myPage": "My Page"
+  },
+  "cart": {
+    "title": "Cart",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "empty": "Your cart is empty",
+    "maxQuantity": "Maximum quantity reached"
+  },
+  "checkout": {
+    "shipping": "Shipping Info",
+    "payment": "Payment",
+    "confirmation": "Order Confirmation",
+    "next": "Next",
+    "previous": "Previous",
+    "recipientName": "Recipient Name",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "phone": "Phone Number",
+    "deliveryNotes": "Delivery Notes",
+    "cardNumber": "Card Number",
+    "cardholderName": "Cardholder Name",
+    "expirationDate": "Expiration Date (MM/YY)",
+    "cvv": "CVV",
+    "orderSummary": "Order Summary",
+    "acceptedPayment": "Accepted Payment Method",
+    "shippingFee": "Shipping Fee"
+  },
+  "products": {
+    "sort": "Sort",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low",
+    "nameAsc": "Name",
+    "newest": "Newest",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "addToCart": "Add to Cart"
+  },
+  "orders": {
+    "title": "Order History",
+    "orderNumber": "Order Number",
+    "orderDate": "Order Date",
+    "deliveryStatus": "Delivery Status",
+    "preparing": "Preparing",
+    "shipping": "Shipping",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled",
+    "reorder": "Reorder",
+    "empty": "No order history",
+    "notFound": "Order not found",
+    "items": "Order Items",
+    "productName": "Product",
+    "unitPrice": "Unit Price",
+    "shippingAddress": "Shipping Address"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "login": "Login",
+    "register": "Register",
+    "loginTitle": "Login",
+    "registerTitle": "Register",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "recipientName": "Recipient Name",
+    "street": "Address",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "phone": "Phone Number"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "English"
+  },
+  "search": {
+    "resultsTitle": "Search Results",
+    "resultCount": "{{count}} products"
+  },
+  "navigation": {
+    "kpopGoods": "K-POP Goods",
+    "kwebtoonGoods": "K-WEBTOON Goods"
+  },
+  "footer": {
+    "customerService": "Customer Service",
+    "companyInfo": "Company Info"
+  },
+  "confirmation": {
+    "successMessage": "Your order has been placed!",
+    "orderedItems": "Ordered Items",
+    "estimatedDelivery": "Estimated Delivery",
+    "viewOrders": "View Order History"
+  },
+  "general": {
+    "returnToHome": "Return to Home",
+    "notFoundTitle": "404 - Page Not Found",
+    "notFoundMessage": "The page you are looking for could not be found."
+  },
+  "home": {
+    "tagline": "Your destination for K-POP & K-WEBTOON goods",
+    "featuredProducts": "Featured Products",
+    "shopByCategory": "Shop by Category",
+    "viewAll": "View All"
+  },
+  "errors": {
+    "generalError": "An unexpected error occurred. We apologize for the inconvenience.",
+    "searchMinLength": "Please enter at least 2 characters",
+    "noResults": "No results found",
+    "cartEmpty": "Your cart is empty",
+    "invalidCredentials": "Invalid email or password",
+    "invalidEmail": "Invalid email format",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "passwordMaxLength": "Password must be at most 64 characters",
+    "requiredField": "This field is required",
+    "invalidCardNumber": "Invalid card number",
+    "cardExpired": "Card is expired",
+    "invalidCVV": "CVV must be 3 digits",
+    "processingPayment": "Processing payment...",
+    "noOrderHistory": "No order history",
+    "productNotFound": "Product not found"
+  }
+}

@@ -1,0 +1,38 @@
+.categoryMenu {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-nav-bg);
+  padding: 0 var(--spacing-md);
+  position: relative;
+  z-index: 100;
+}
+
+.menuItem {
+  position: relative;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  color: var(--color-nav-text);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background-color: var(--color-nav-hover);
+  outline: none;
+}
+
+.menuItemActive {
+  background-color: var(--color-nav-hover);
+}
+
+/* Touch device support */
+@media (hover: none) {
+  .menuItem {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

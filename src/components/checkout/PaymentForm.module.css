@@ -1,0 +1,212 @@
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.visaHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-primary-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.visaLogo {
+  width: 60px;
+  height: 38px;
+  background: linear-gradient(135deg, #1a1f71 0%, #2b3990 100%);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.acceptedBadge {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.orderSummary {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--color-primary-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.orderSummaryTitle {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.375rem 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.orderItemName {
+  flex: 1;
+}
+
+.orderItemQty {
+  margin: 0 1rem;
+  color: var(--color-text-muted);
+}
+
+.orderItemPrice {
+  font-weight: 500;
+}
+
+.orderTotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.orderGrandTotal {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+.fieldGroup {
+  margin-bottom: 1.25rem;
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 0.375rem;
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: 0.25rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-card);
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.input.hasError {
+  border-color: var(--color-error);
+}
+
+.input.hasError:focus {
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+}
+
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin-top: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.prevButton {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--color-button-primary);
+  border: 1px solid var(--color-button-primary);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.prevButton:hover {
+  background-color: var(--color-primary-50);
+}
+
+.submitButton {
+  padding: 0.75rem 2rem;
+  background-color: var(--color-button-primary);
+  color: var(--color-button-primary-text);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: var(--color-button-primary-hover);
+}
+
+.submitButton:disabled {
+  background-color: var(--color-button-disabled);
+  color: var(--color-button-disabled-text);
+  cursor: not-allowed;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-button-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
