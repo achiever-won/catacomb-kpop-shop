@@ -106,9 +106,12 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       initDemoSession: () => {
-        const { isAuthenticated } = get();
+        const { isAuthenticated, user } = get();
         if (!isAuthenticated) {
           set({ user: demoUser, isAuthenticated: true });
+        } else if (user && user.email === demoUser.email) {
+          // Always sync demo user data (in case name changed in code)
+          set({ user: demoUser });
         }
       },
     }),
