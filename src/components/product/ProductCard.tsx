@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShoppingBag, XCircle, Heart } from 'lucide-react';
@@ -6,6 +7,8 @@ import { useWishlistStore } from '../../stores/wishlistStore';
 import { getFallbackImageUrl } from '../../data/products';
 import type { Product } from '../../types';
 import styles from './ProductCard.module.css';
+
+const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
 
 interface ProductCardProps {
   product: Product;
@@ -16,6 +19,16 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const { t } = useTranslation();
   const toggle = useWishlistStore((state) => state.toggle);
   const isLiked = useWishlistStore((state) => state.isLiked(product.id));
+  const [extIndex, setExtIndex] = useState(0);
+
+  const base = `${import.meta.env.BASE_URL}products/${product.name}`;
+  const match = product.id.match(/(\d+)$/);
+  const numIndex = match ? parseInt(match[1], 10) : 0;
+  const fallbackUrl = getFallbackImageUrl(product.mainCategory, product.subCategory, numIndex);
+
+  const imgSrc = extIndex < IMAGE_EXTENSIONS.length
+    ? base + IMAGE_EXTENSIONS[extIndex]
+    : fallbackUrl;
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -29,14 +42,9 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     toggle(product.id);
   };
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    // Extract index from product ID (e.g., "kpop-albums-001" → 1)
-    const match = product.id.match(/(\d+)$/);
-    const index = match ? parseInt(match[1], 10) : 0;
-    const fallback = getFallbackImageUrl(product.mainCategory, product.subCategory, index);
-    if (img.src !== fallback) {
-      img.src = fallback;
+  const handleImageError = () => {
+    if (extIndex < IMAGE_EXTENSIONS.length) {
+      setExtIndex((prev) => prev + 1);
     }
   };
 
@@ -45,7 +53,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       <Link to={`/product/${product.id}`} className={styles.cardLink}>
         <div className={styles.imageWrapper}>
           <img
-            src={product.imageUrl}
+            src={imgSrc}
             alt={product.name}
             className={styles.image}
             loading="lazy"
