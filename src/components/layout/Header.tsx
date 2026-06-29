@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ShoppingCart, User, LogOut, Globe, Search } from 'lucide-react';
+import { ShoppingCart, User, LogOut, Globe, Search, Heart } from 'lucide-react';
 import { useCartStore } from '../../stores/cartStore';
 import { useAuthStore } from '../../stores/authStore';
 import { useLanguageStore } from '../../stores/languageStore';
+import { useWishlistStore } from '../../stores/wishlistStore';
 import styles from './Header.module.css';
 
 export function Header() {
@@ -14,6 +15,7 @@ export function Header() {
   const logout = useAuthStore((state) => state.logout);
   const language = useLanguageStore((state) => state.language);
   const toggleLanguage = useLanguageStore((state) => state.toggle);
+  const wishlistCount = useWishlistStore((state) => state.getCount());
 
   return (
     <header className={styles.header}>
@@ -62,6 +64,13 @@ export function Header() {
               <span className={styles.iconLabel}>{t('header.login')}</span>
             </Link>
           )}
+
+          <Link to="/wishlist" className={styles.cartButton} title="좋아요">
+            <Heart size={20} />
+            {wishlistCount > 0 && (
+              <span className={styles.cartBadge}>{wishlistCount}</span>
+            )}
+          </Link>
 
           <Link to="/cart" className={styles.cartButton} title={t('header.cart')}>
             <ShoppingCart size={22} />

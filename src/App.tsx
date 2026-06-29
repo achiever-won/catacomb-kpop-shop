@@ -14,6 +14,7 @@ import { RegisterPage } from './pages/RegisterPage';
 import { OrderHistoryPage } from './pages/OrderHistoryPage';
 import { OrderDetailPage } from './pages/OrderDetailPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { WishlistPage } from './pages/WishlistPage';
 import { FaqPage } from './pages/info/FaqPage';
 import { ContactPage } from './pages/info/ContactPage';
 import { ShippingInfoPage } from './pages/info/ShippingInfoPage';
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/search" element={<SearchResultsPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />

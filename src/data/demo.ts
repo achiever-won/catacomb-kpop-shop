@@ -4,9 +4,9 @@ import { products } from './products';
 // Demo User
 export const demoUser: User = {
   email: 'demo@catacomb.kr',
-  name: '데모 사용자',
+  name: '홍깡',
   shippingAddress: {
-    recipientName: '데모 사용자',
+    recipientName: '홍깡',
     street: '테헤란로 123',
     city: '서울특별시 강남구',
     postalCode: '06234',
@@ -18,7 +18,7 @@ export const demoPassword = 'demo1234';
 
 // Demo Address
 export const demoAddress: ShippingAddress = {
-  recipientName: '데모 사용자',
+  recipientName: '홍깡',
   street: '테헤란로 123',
   city: '서울특별시 강남구',
   postalCode: '06234',

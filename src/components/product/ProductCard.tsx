@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ShoppingBag, XCircle } from 'lucide-react';
+import { ShoppingBag, XCircle, Heart } from 'lucide-react';
 import { truncateText, formatCurrency } from '../../utils/formatters';
+import { useWishlistStore } from '../../stores/wishlistStore';
 import type { Product } from '../../types';
 import styles from './ProductCard.module.css';
 
@@ -12,11 +13,19 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const { t } = useTranslation();
+  const toggle = useWishlistStore((state) => state.toggle);
+  const isLiked = useWishlistStore((state) => state.isLiked(product.id));
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     onAddToCart(product.id);
+  };
+
+  const handleToggleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggle(product.id);
   };
 
   return (
@@ -35,6 +44,13 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
               <span>{t('products.outOfStock')}</span>
             </div>
           )}
+          <button
+            className={`${styles.likeButton} ${isLiked ? styles.liked : ''}`}
+            onClick={handleToggleLike}
+            aria-label={isLiked ? '좋아요 취소' : '좋아요'}
+          >
+            <Heart size={20} fill={isLiked ? 'currentColor' : 'none'} />
+          </button>
         </div>
         <div className={styles.info}>
           <span className={styles.category}>{product.subCategory}</span>
