@@ -21,8 +21,11 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <Link to="/" className={styles.logo}>
-          <span className={styles.logoIcon}>♪</span>
-          <span className={styles.logoText}>카타콤</span>
+          <img
+            src={`${import.meta.env.BASE_URL}카타콤.png`}
+            alt="카타콤"
+            className={styles.logoImage}
+          />
         </Link>
 
         <form className={styles.searchForm} action="#/search" method="get" role="search">

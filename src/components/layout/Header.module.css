@@ -20,26 +20,18 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
   text-decoration: none;
-  color: var(--color-header-text);
   flex-shrink: 0;
 }
 
 .logo:hover {
   text-decoration: none;
-  color: var(--color-header-text);
 }
 
-.logoIcon {
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-.logoText {
-  font-size: var(--font-size-xl);
-  font-weight: 800;
-  letter-spacing: -0.02em;
+.logoImage {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Search */
