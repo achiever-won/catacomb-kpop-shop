@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.css';
 
@@ -18,19 +19,19 @@ export function Footer() {
         <div className={styles.linksSection}>
           <div className={styles.linksTitle}>{t('footer.customerService')}</div>
           <ul className={styles.linksList}>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">1:1 문의</a></li>
-            <li><a href="#">배송 안내</a></li>
-            <li><a href="#">반품/교환</a></li>
+            <li><Link to="/info/faq">FAQ</Link></li>
+            <li><Link to="/info/contact">1:1 문의</Link></li>
+            <li><Link to="/info/shipping">배송 안내</Link></li>
+            <li><Link to="/info/returns">반품/교환</Link></li>
           </ul>
         </div>
 
         <div className={styles.linksSection}>
           <div className={styles.linksTitle}>{t('footer.companyInfo')}</div>
           <ul className={styles.linksList}>
-            <li><a href="#">이용약관</a></li>
-            <li><a href="#">개인정보처리방침</a></li>
-            <li><a href="#">사업자정보</a></li>
+            <li><Link to="/info/terms">이용약관</Link></li>
+            <li><Link to="/info/privacy">개인정보처리방침</Link></li>
+            <li><Link to="/info/company">사업자정보</Link></li>
           </ul>
         </div>
 
