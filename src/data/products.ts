@@ -14,31 +14,11 @@ function createRng(seed: number) {
 }
 
 // Category-specific colors for placeholder images
-const kpopSubCategoryColors: Record<string, string> = {
-  Albums: '7c3aed/ffffff',       // purple
-  Photocards: 'ec4899/ffffff',   // pink
-  'Light Sticks': 'f59e0b/ffffff', // amber
-  Apparel: '3b82f6/ffffff',      // blue
-  Accessories: '10b981/ffffff',  // emerald
-  Posters: '6366f1/ffffff',      // indigo
-  Stationery: '14b8a6/ffffff',   // teal
-};
-
-const webtoonSubCategoryColors: Record<string, string> = {
-  Figures: 'ef4444/ffffff',      // red
-  'Art Books': '8b5cf6/ffffff',  // violet
-  Apparel: '0ea5e9/ffffff',      // sky
-  'Phone Cases': 'f97316/ffffff', // orange
-  Stickers: 'a855f7/ffffff',     // purple
-  Keychains: '06b6d4/ffffff',    // cyan
-  'Home Decor': '84cc16/ffffff', // lime
-};
-
-function getPlaceholderUrl(mainCategory: string, subCategory: string, index: number): string {
-  const colors = mainCategory === 'K-POP Goods' ? kpopSubCategoryColors : webtoonSubCategoryColors;
-  const color = colors[subCategory] || '6b7280/ffffff';
-  const text = encodeURIComponent(`${subCategory} ${index}`);
-  return `https://placehold.co/400x400/${color}?text=${text}`;
+// Using picsum.photos with seed for consistent, unique images per product
+function getPlaceholderUrl(_mainCategory: string, _subCategory: string, index: number): string {
+  // Each product gets a unique seed-based image from Lorem Picsum (free, no attribution required)
+  const seed = _mainCategory === 'K-POP Goods' ? index : index + 300;
+  return `https://picsum.photos/seed/${seed}/400/400`;
 }
 
 // K-POP artist/group names for product name generation
