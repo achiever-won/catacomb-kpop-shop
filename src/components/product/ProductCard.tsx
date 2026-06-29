@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ShoppingBag, XCircle } from 'lucide-react';
 import { truncateText, formatCurrency } from '../../utils/formatters';
 import type { Product } from '../../types';
 import styles from './ProductCard.module.css';
@@ -26,9 +27,17 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
             src={product.imageUrl}
             alt={product.name}
             className={styles.image}
+            loading="lazy"
           />
+          {!product.inStock && (
+            <div className={styles.soldOutOverlay}>
+              <XCircle size={24} />
+              <span>{t('products.outOfStock')}</span>
+            </div>
+          )}
         </div>
         <div className={styles.info}>
+          <span className={styles.category}>{product.subCategory}</span>
           <h3 className={styles.name}>{truncateText(product.name, 40)}</h3>
           <span className={styles.price}>{formatCurrency(product.price)}</span>
         </div>
@@ -38,15 +47,11 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
           className={styles.addToCartButton}
           onClick={handleAddToCart}
           disabled={!product.inStock}
-          aria-label={
-            product.inStock
-              ? t('products.addToCart')
-              : t('products.outOfStock')
-          }
         >
-          {product.inStock
-            ? t('products.addToCart')
-            : t('products.outOfStock')}
+          <ShoppingBag size={16} />
+          <span>
+            {product.inStock ? t('products.addToCart') : t('products.outOfStock')}
+          </span>
         </button>
       </div>
     </article>

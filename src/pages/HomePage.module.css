@@ -2,32 +2,86 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
 }
 
 /* Hero Banner */
 .hero {
-  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-600));
+  background: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-700) 50%, var(--color-primary-600) 100%);
   color: var(--color-text-inverse);
   padding: var(--spacing-2xl) var(--spacing-lg);
-  text-align: center;
   border-radius: var(--radius-lg);
-  margin: var(--spacing-lg) auto 0;
-  max-width: var(--max-width);
-  width: calc(100% - var(--spacing-lg) * 2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
 }
 
 .heroBrand {
-  font-size: 3rem;
-  font-weight: 800;
+  font-size: 3.5rem;
+  font-weight: 900;
   margin-bottom: var(--spacing-sm);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .heroTagline {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: 400;
-  opacity: 0.9;
+  opacity: 0.85;
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: rgba(255,255,255, 0.15);
+  border: 1px solid rgba(255,255,255, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.heroButton:hover {
+  background: rgba(255,255,255, 0.25);
+  transform: translateY(-1px);
+  text-decoration: none;
+  color: var(--color-text-inverse);
+}
+
+/* Trust Badges */
+.trustBadges {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-lg) 0;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
 }
 
 /* Section Container */
@@ -51,18 +105,6 @@
   color: var(--color-text-primary);
 }
 
-.viewAllLink {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-primary-600);
-  text-decoration: none;
-}
-
-.viewAllLink:hover {
-  color: var(--color-primary-700);
-  text-decoration: underline;
-}
-
 /* Product Grid */
 .productGrid {
   display: grid;
@@ -80,17 +122,16 @@
 .categoryGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .categoryCard {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: var(--spacing-xl);
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
   background: var(--color-bg-card);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   text-decoration: none;
   color: var(--color-text-primary);
@@ -99,15 +140,29 @@
 
 .categoryCard:hover {
   border-color: var(--color-primary-400);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transform: translateY(-2px);
   text-decoration: none;
   color: var(--color-text-primary);
 }
 
-.categoryIcon {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
+.categoryIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  flex-shrink: 0;
+}
+
+.categoryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
 }
 
 .categoryName {
@@ -117,6 +172,15 @@
 
 .categoryCount {
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  margin-top: var(--spacing-xs);
+  color: var(--color-text-muted);
+}
+
+.categoryArrow {
+  color: var(--color-text-muted);
+  transition: transform 0.2s;
+}
+
+.categoryCard:hover .categoryArrow {
+  transform: translateX(4px);
+  color: var(--color-primary-600);
 }
