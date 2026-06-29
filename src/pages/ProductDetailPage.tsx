@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getProductById, getFallbackImageUrl } from '../data/products';
@@ -5,10 +6,13 @@ import { formatCurrency } from '../utils/formatters';
 import { useCartStore } from '../stores/cartStore';
 import styles from './ProductDetailPage.module.css';
 
+const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
+
 export function ProductDetailPage() {
   const { productId } = useParams<{ productId: string }>();
   const { t } = useTranslation();
   const addItem = useCartStore((state) => state.addItem);
+  const [extIndex, setExtIndex] = useState(0);
 
   const product = productId ? getProductById(productId) : undefined;
 
@@ -27,6 +31,21 @@ export function ProductDetailPage() {
     );
   }
 
+  const base = `${import.meta.env.BASE_URL}products/${product.name}`;
+  const match = product.id.match(/(\d+)$/);
+  const numIndex = match ? parseInt(match[1], 10) : 0;
+  const fallbackUrl = getFallbackImageUrl(product.mainCategory, product.subCategory, numIndex);
+
+  const imgSrc = extIndex < IMAGE_EXTENSIONS.length
+    ? base + IMAGE_EXTENSIONS[extIndex]
+    : fallbackUrl;
+
+  const handleImageError = () => {
+    if (extIndex < IMAGE_EXTENSIONS.length) {
+      setExtIndex((prev) => prev + 1);
+    }
+  };
+
   const handleAddToCart = () => {
     addItem(product);
   };
@@ -36,18 +55,10 @@ export function ProductDetailPage() {
       <div className={styles.productLayout}>
         <div className={styles.imageWrapper}>
           <img
-            src={product.imageUrl}
+            src={imgSrc}
             alt={product.name}
             className={styles.image}
-            onError={(e) => {
-              const img = e.currentTarget;
-              const match = product.id.match(/(\d+)$/);
-              const index = match ? parseInt(match[1], 10) : 0;
-              const fallback = getFallbackImageUrl(product.mainCategory, product.subCategory, index);
-              if (img.src !== fallback) {
-                img.src = fallback;
-              }
-            }}
+            onError={handleImageError}
           />
         </div>
         <div className={styles.details}>
