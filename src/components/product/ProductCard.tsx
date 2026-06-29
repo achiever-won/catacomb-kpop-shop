@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ShoppingBag, XCircle, Heart } from 'lucide-react';
 import { truncateText, formatCurrency } from '../../utils/formatters';
 import { useWishlistStore } from '../../stores/wishlistStore';
+import { getFallbackImageUrl } from '../../data/products';
 import type { Product } from '../../types';
 import styles from './ProductCard.module.css';
 
@@ -28,6 +29,17 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     toggle(product.id);
   };
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    // Extract index from product ID (e.g., "kpop-albums-001" → 1)
+    const match = product.id.match(/(\d+)$/);
+    const index = match ? parseInt(match[1], 10) : 0;
+    const fallback = getFallbackImageUrl(product.mainCategory, product.subCategory, index);
+    if (img.src !== fallback) {
+      img.src = fallback;
+    }
+  };
+
   return (
     <article className={styles.card}>
       <Link to={`/product/${product.id}`} className={styles.cardLink}>
@@ -37,6 +49,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
             alt={product.name}
             className={styles.image}
             loading="lazy"
+            onError={handleImageError}
           />
           {!product.inStock && (
             <div className={styles.soldOutOverlay}>

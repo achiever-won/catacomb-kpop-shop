@@ -119,7 +119,15 @@ const webtoonImagePools: Record<string, string[]> = {
   ],
 };
 
-function getPlaceholderUrl(mainCategory: string, subCategory: string, index: number): string {
+// Returns the product image path: first tries /products/{id}.jpg, falls back to Unsplash
+function getProductImageUrl(id: string, _mainCategory: string, _subCategory: string, _index: number): string {
+  // Primary: local image in public/products/ folder
+  // The actual fallback is handled in ProductCard component via onError
+  return `${import.meta.env.BASE_URL}products/${id}.jpg`;
+}
+
+// Fallback URL when local image doesn't exist
+export function getFallbackImageUrl(mainCategory: string, subCategory: string, index: number): string {
   const pools = mainCategory === 'K-POP Goods' ? kpopImagePools : webtoonImagePools;
   const images = pools[subCategory] || pools[Object.keys(pools)[0]];
   return images[index % images.length];
@@ -275,7 +283,7 @@ function generateProducts(): Product[] {
         name: `${artist} ${productType}`,
         description: `${artist} - ${description}`,
         price,
-        imageUrl: getPlaceholderUrl('K-POP Goods', subCategory, kpopIndex),
+        imageUrl: getProductImageUrl(id, 'K-POP Goods', subCategory, kpopIndex),
         mainCategory: 'K-POP Goods',
         subCategory,
         inStock,
@@ -312,7 +320,7 @@ function generateProducts(): Product[] {
         name: `${webtoon} ${productType}`,
         description: `${webtoon} - ${description}`,
         price,
-        imageUrl: getPlaceholderUrl('K-WEBTOON Goods', subCategory, webtoonIndex),
+        imageUrl: getProductImageUrl(id, 'K-WEBTOON Goods', subCategory, webtoonIndex),
         mainCategory: 'K-WEBTOON Goods',
         subCategory,
         inStock,

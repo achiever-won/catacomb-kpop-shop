@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getProductById } from '../data/products';
+import { getProductById, getFallbackImageUrl } from '../data/products';
 import { formatCurrency } from '../utils/formatters';
 import { useCartStore } from '../stores/cartStore';
 import styles from './ProductDetailPage.module.css';
@@ -39,6 +39,15 @@ export function ProductDetailPage() {
             src={product.imageUrl}
             alt={product.name}
             className={styles.image}
+            onError={(e) => {
+              const img = e.currentTarget;
+              const match = product.id.match(/(\d+)$/);
+              const index = match ? parseInt(match[1], 10) : 0;
+              const fallback = getFallbackImageUrl(product.mainCategory, product.subCategory, index);
+              if (img.src !== fallback) {
+                img.src = fallback;
+              }
+            }}
           />
         </div>
         <div className={styles.details}>
