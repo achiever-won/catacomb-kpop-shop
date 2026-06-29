@@ -119,11 +119,11 @@ const webtoonImagePools: Record<string, string[]> = {
   ],
 };
 
-// Returns the product image path: first tries /products/{id}.jpg, falls back to Unsplash
-function getProductImageUrl(id: string, _mainCategory: string, _subCategory: string, _index: number): string {
-  // Primary: local image in public/products/ folder
-  // The actual fallback is handled in ProductCard component via onError
-  return `${import.meta.env.BASE_URL}products/${id}.jpg`;
+// Returns the product image path: first tries /products/{name}.jpg, falls back to Unsplash
+function getProductImageUrl(_id: string, _mainCategory: string, _subCategory: string, _index: number, name: string): string {
+  // Primary: local image in public/products/ folder matching product name
+  // Supports .jpg, .jpeg, .png, .webp — fallback handled in ProductCard via onError
+  return `${import.meta.env.BASE_URL}products/${name}.jpg`;
 }
 
 // Fallback URL when local image doesn't exist
@@ -278,12 +278,14 @@ function generateProducts(): Product[] {
       kpopIndex++;
       const id = `kpop-${subCategory.toLowerCase().replace(/\s+/g, '-')}-${String(kpopIndex).padStart(3, '0')}`;
 
+      const productName = `${artist} ${productType}`;
+
       products.push({
         id,
-        name: `${artist} ${productType}`,
+        name: productName,
         description: `${artist} - ${description}`,
         price,
-        imageUrl: getProductImageUrl(id, 'K-POP Goods', subCategory, kpopIndex),
+        imageUrl: getProductImageUrl(id, 'K-POP Goods', subCategory, kpopIndex, productName),
         mainCategory: 'K-POP Goods',
         subCategory,
         inStock,
@@ -315,12 +317,14 @@ function generateProducts(): Product[] {
       webtoonIndex++;
       const id = `webtoon-${subCategory.toLowerCase().replace(/\s+/g, '-')}-${String(webtoonIndex).padStart(3, '0')}`;
 
+      const productName = `${webtoon} ${productType}`;
+
       products.push({
         id,
-        name: `${webtoon} ${productType}`,
+        name: productName,
         description: `${webtoon} - ${description}`,
         price,
-        imageUrl: getProductImageUrl(id, 'K-WEBTOON Goods', subCategory, webtoonIndex),
+        imageUrl: getProductImageUrl(id, 'K-WEBTOON Goods', subCategory, webtoonIndex, productName),
         mainCategory: 'K-WEBTOON Goods',
         subCategory,
         inStock,
