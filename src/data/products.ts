@@ -13,6 +13,34 @@ function createRng(seed: number) {
   };
 }
 
+// Category-specific colors for placeholder images
+const kpopSubCategoryColors: Record<string, string> = {
+  Albums: '7c3aed/ffffff',       // purple
+  Photocards: 'ec4899/ffffff',   // pink
+  'Light Sticks': 'f59e0b/ffffff', // amber
+  Apparel: '3b82f6/ffffff',      // blue
+  Accessories: '10b981/ffffff',  // emerald
+  Posters: '6366f1/ffffff',      // indigo
+  Stationery: '14b8a6/ffffff',   // teal
+};
+
+const webtoonSubCategoryColors: Record<string, string> = {
+  Figures: 'ef4444/ffffff',      // red
+  'Art Books': '8b5cf6/ffffff',  // violet
+  Apparel: '0ea5e9/ffffff',      // sky
+  'Phone Cases': 'f97316/ffffff', // orange
+  Stickers: 'a855f7/ffffff',     // purple
+  Keychains: '06b6d4/ffffff',    // cyan
+  'Home Decor': '84cc16/ffffff', // lime
+};
+
+function getPlaceholderUrl(mainCategory: string, subCategory: string, index: number): string {
+  const colors = mainCategory === 'K-POP Goods' ? kpopSubCategoryColors : webtoonSubCategoryColors;
+  const color = colors[subCategory] || '6b7280/ffffff';
+  const text = encodeURIComponent(`${subCategory} ${index}`);
+  return `https://placehold.co/400x400/${color}?text=${text}`;
+}
+
 // K-POP artist/group names for product name generation
 const kpopArtists = [
   'BTS', 'BLACKPINK', 'Stray Kids', 'TWICE', 'aespa',
@@ -163,7 +191,7 @@ function generateProducts(): Product[] {
         name: `${artist} ${productType}`,
         description: `${artist} - ${description}`,
         price,
-        imageUrl: `/images/placeholder-kpop-${subCategory.toLowerCase().replace(/\s+/g, '-')}.png`,
+        imageUrl: getPlaceholderUrl('K-POP Goods', subCategory, kpopIndex),
         mainCategory: 'K-POP Goods',
         subCategory,
         inStock,
@@ -200,7 +228,7 @@ function generateProducts(): Product[] {
         name: `${webtoon} ${productType}`,
         description: `${webtoon} - ${description}`,
         price,
-        imageUrl: `/images/placeholder-webtoon-${subCategory.toLowerCase().replace(/\s+/g, '-')}.png`,
+        imageUrl: getPlaceholderUrl('K-WEBTOON Goods', subCategory, webtoonIndex),
         mainCategory: 'K-WEBTOON Goods',
         subCategory,
         inStock,
