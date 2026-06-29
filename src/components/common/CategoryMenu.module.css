@@ -28,6 +28,13 @@
   outline: none;
 }
 
+.menuImage {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .menuItemActive {
   background-color: var(--color-primary-50);
   color: var(--color-primary-900);

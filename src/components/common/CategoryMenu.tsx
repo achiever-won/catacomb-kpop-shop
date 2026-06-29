@@ -149,7 +149,11 @@ export function CategoryMenu({
             aria-expanded={activeCategory === category.name}
             aria-haspopup="true"
           >
-            {category.name}
+            <img
+              src={`${import.meta.env.BASE_URL}${category.name === 'K-POP Goods' ? 'kpop.png' : 'webtoon.png'}`}
+              alt={category.name}
+              className={styles.menuImage}
+            />
           </button>
           <SubMenuPanel
             category={category}
